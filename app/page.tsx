@@ -17,7 +17,7 @@ export default function Home() {
   const [circleClicked, setCircleClicked] = useState(false);
 
   return (
-    <div onScroll={() => console.log("scrolling10")}>
+    <>
       <main className="flex min-h-screen flex-col items-center justify-around p-24">
         <div className="font-black z-10 max-w-5xl w-full text-clip text-8xl lg:flex">
           腐乳在中國大陸、香港、台灣、琉球及東南亞均有生產，但色澤與味道因地方做法不同而有所差異。
@@ -53,11 +53,11 @@ export default function Home() {
         </div>
       </main>
       {circleClicked && <Scrollable />}
-      <div className="min-w-screen bg-red-400">
+      <div className="flex flex-col items-center min-w-screen bg-red-400 pt-10">
         <div className="min-h-screen font-black z-10 max-w-5xl w-full text-clip pt-0.5 text-8xl lg:flex">
           腐乳在中國大陸、香港、台灣、琉球及東南亞均有生產，但色澤與味道因地方做法不同而有所差異。
         </div>
       </div>
-    </div>
+    </>
   );
 }

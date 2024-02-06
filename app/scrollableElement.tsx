@@ -34,11 +34,47 @@ export default function Scrollable() {
     };
   }, []); */
 
+  const scrollDivRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      console.log(
+        "Window scrolled:"
+        //window.scrollY,
+        //scrollDivRef,
+        //typeof scrollDivRef,
+        //scrollDivRef?.current?.getBoundingClientRect(),
+        //scrollDivRef?.current?.offsetTop,
+        //scrollDivRef?.current?.offsetHeight
+      );
+      const boundingClientRect = scrollDivRef?.current?.getBoundingClientRect();
+      if (boundingClientRect) {
+        const currentProgress =
+          1 -
+          Math.max(
+            0,
+            Math.min(
+              (boundingClientRect?.top + boundingClientRect?.height) /
+                boundingClientRect?.height,
+              1
+            )
+          );
+        setScrollProgress(currentProgress);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div
-      onScrollCapture={() => console.log("scrolling2")}
-      //ref={elementRef}
-      className="flex min-h-[200vh] flex-col items-center justify-around p-24"
+      ref={scrollDivRef}
+      className="flex min-h-[200vh] flex-col items-center justify-around p-24 pb-[250px]"
     >
       <div
         onScrollCapture={() => console.log("scrolling3")}
@@ -48,8 +84,11 @@ export default function Scrollable() {
       </div>
 
       <div
-        onScrollCapture={() => console.log("scrolling")}
-        className={`hover:animate-ping-once scale-150 w-[12px] h-12 bg-red-400 rounded-full`}
+        className={`scale-150 bg-red-400 rounded-full -z-10`}
+        style={{
+          height: scrollProgress * scrollProgress * 100 + "vh",
+          width: scrollProgress * scrollProgress * 100 + "vh",
+        }}
       />
     </div>
   );
