@@ -40,7 +40,7 @@ export default function Scrollable() {
   useEffect(() => {
     const handleScroll = () => {
       console.log(
-        "Window scrolled:"
+        "Window scrolled:",
         //window.scrollY,
         //scrollDivRef,
         //typeof scrollDivRef,
@@ -57,8 +57,8 @@ export default function Scrollable() {
             Math.min(
               (boundingClientRect?.top + boundingClientRect?.height) /
                 boundingClientRect?.height,
-              1
-            )
+              1,
+            ),
           );
         setScrollProgress(currentProgress);
       }
@@ -82,6 +82,18 @@ export default function Scrollable() {
       >
         腐乳在中國大陸、香港、台灣、琉球及東南亞均有生產，但色澤與味道因地方做法不同而有所差異。
       </div>
+
+      <div
+        className={`scale-150 bg-red-400 rounded-full -z-10`}
+        style={{
+          height: scrollProgress * scrollProgress * 320 + "vh",
+          width: scrollProgress * scrollProgress * 320 + "vh",
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      />
 
       <div
         className={`scale-150 bg-red-400 rounded-full -z-10`}
