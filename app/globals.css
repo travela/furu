@@ -16,6 +16,23 @@
   }
 }
 
+/* Class-based overrides to allow a client-side theme toggle.
+   - html.theme-dark wins over prefers-color-scheme and forces dark vars
+   - html.theme-light forces light vars
+   - leaving no class preserves the user's OS preference (system/default)
+*/
+html.theme-dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+html.theme-light {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

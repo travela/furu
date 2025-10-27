@@ -16,6 +16,9 @@ export default function Home() {
 
   const [circleClicked, setCircleClicked] = useState(false);
 
+  // Number of circles depending on screen width
+  const numberOfCircles = window.innerWidth < 888 ? Math.floor(window.innerWidth / 100) : 10;
+
   return (
     <>
       <main className="flex min-h-screen flex-col items-center justify-around p-24">
@@ -24,10 +27,10 @@ export default function Home() {
         </div>
 
         <div className="flex items-center justify-between space-x-10">
-          {Array.from(Array(10), (e, i) => {
+          {Array.from(Array(numberOfCircles), (e, i) => {
             return (
               <div
-                key={10 + i}
+                key={numberOfCircles + i}
                 className="hover:animate-ping-once w-12 h-12 bg-red-400 rounded-full"
               />
             );
@@ -35,9 +38,10 @@ export default function Home() {
         </div>
       </main>
 
-      <main className="flex min-h-screen flex-col items-start justify-around p-24">
+      <main className="flex min-h-screen flex-col items-start justify-around md:p-24 p-10">
         <div className="font-black z-10 max-w-5xl w-full text-left text-8xl lg:flex">
-          A WEBSITE ABOUT - ME 差不多
+          A WEBSITE ABOUT - FURU 
+          差不多
         </div>
         <div className="flex w-full justify-between">
           <div
