@@ -17,7 +17,7 @@ export default function Home() {
   const [circleClicked, setCircleClicked] = useState(false);
 
   // Number of circles depending on screen width
-  const numberOfCircles = window.innerWidth < 888 ? Math.floor(window.innerWidth / 100) : 10;
+  const numberOfCircles = typeof window !== "undefined" && window.innerWidth < 888 ? Math.floor(window.innerWidth / 100) : 10;
 
   return (
     <>
